@@ -1,35 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<head>
+    <title>Cap1News</title>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{{url_for('static', filename='css/bootstrap/bootstrap.min.css')}}"
+      rel="stylesheet"
+    />
+  </head>
 
-  <title>Cap1News</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="{{url_for('static', filename='css/bootstrap/bootstrap.min.css')}}" rel="stylesheet">
-
-</head>
-
-<body>
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h1 class="mt-5">STAGING SITE</h1>
-        <p class="lead">Choose a category!</p>
+  <body>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="mt-5">STAGING SITE</h1>
+          <p class="lead">Choose a category!</p>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="{{url_for('static', filename='js/vendor/jquery/jquery.slim.min.js')}}"></script>
-  <script src="{{url_for('static', filename='js/vendor/bootstrap/bootstrap.bundle.min.js')}}"></script>
-
-</body>
-
+    <!-- Categories -->
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <a href="#">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1518307944026-f2d91a0f087c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="Entertainment image">
+                    <div class="card-img-overlay">
+                      <h1 class="card-title">Entertainment</h1>
+                    </div>
+                  </div>
+              </a>
+          </div>
+          <div class="col-sm-4 col-md-4 col-lg-4";>
+            <a href="#">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1480563597043-1c877e682fc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="Sports image">
+                    <div class="card-img-overlay">
+                      <h1 class="card-title">Sports</h1>
+                    </div>
+                  </div>
+              </a>
+          </div>
+          <div class="col-sm-4 col-md-4 col-lg-4";>
+            <a href="#">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="Technology image">
+                    <div class="card-img-overlay">
+                      <h1 class="card-title">Technology</h1>
+                    </div>
+                  </div>
+              </a>
+          </div>
+        </div>
+      </div>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{url_for('static', filename='js/vendor/jquery/jquery.slim.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/vendor/bootstrap/bootstrap.bundle.min.js')}}"></script>
+  </body>
 </html>
