@@ -35,7 +35,7 @@ def nextpage():
         p += 1
         paging = True
 
-    return redirect('/allentertainment')
+    return redirect('/all')
 
 def pull_data(fromdate, todate, topicsearch, lang, sort_way):
     global p
@@ -55,10 +55,9 @@ def pull_data(fromdate, todate, topicsearch, lang, sort_way):
     results = all_articles['totalResults']
     articles = all_articles['articles']
     page = int(p)
-    print((articles[25]['content']))
     return [results, articles, page]
 
-@app.route('/allentertainment', methods=['GET', 'POST'])
+@app.route('/all', methods=['GET', 'POST'])
 def entertainment_all():
     print('e all')
     global p
@@ -70,14 +69,14 @@ def entertainment_all():
         req = [request.form['fromdate'], request.form['todate'], request.form['topicsearch'], request.form['lang'], request.form['sort']]
         print(req)
         data = pull_data(req[0], req[1], req[2], req[3], req[4])
-        return render_template('entertainment_all.html', results=data[0], all_articles=data[1], page=data[2])
+        return render_template('all_articles.html', results=data[0], all_articles=data[1], page=data[2])
     elif paging:
         data = pull_data(req[0], req[1], req[2], req[3], req[4])
-        return render_template('entertainment_all.html', results=data[0], all_articles=data[1], page=data[2])
+        return render_template('all_articles.html', results=data[0], all_articles=data[1], page=data[2])
     else:
         p = 1
         paging = False
-        return render_template('entertainment_all.html', results=0, all_articles=[], page=p)
+        return render_template('all_articles.html', results=0, all_articles=[], page=p)
 
 
 
