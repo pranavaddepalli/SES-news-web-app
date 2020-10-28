@@ -55,6 +55,7 @@ def pull_data(fromdate, todate, topicsearch, lang, sort_way):
     results = all_articles['totalResults']
     articles = all_articles['articles']
     page = int(p)
+    print((articles[25]['content']))
     return [results, articles, page]
 
 @app.route('/allentertainment', methods=['GET', 'POST'])
@@ -82,8 +83,16 @@ def entertainment_all():
 
 
 @app.context_processor
-def utility_processor():
+def date_processor():
     def format_date(datestamp):
         date = dateutil.parser.parse(datestamp)
         return "{} {}, {} at {}:{}".format(date.strftime("%B"), date.strftime("%d"), date.strftime("%Y"), date.strftime("%H"), date.strftime("%M"))
     return dict(format_date=format_date)
+
+@app.context_processor
+def content_processor():
+    def format_content(content):
+        if content == None:
+            return "We couldn't get this article's content. Sorry!"
+        return str(content)[0:200]
+    return dict(format_content=format_content)
