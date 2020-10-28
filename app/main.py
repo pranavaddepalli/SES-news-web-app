@@ -19,10 +19,6 @@ def home():
 def page_not_found(e):
     return render_template('404error.html'), 404
 
-@app.route('/deverror')
-def deverror():
-    return render_template('api_dev_error.html')
-
 @app.route('/entertainment')
 def entertainment():
     top_headlines = newsapi.get_top_headlines(
@@ -36,10 +32,7 @@ def nextpage():
     if(req != []):
         p += 1
         paging = True
-    if(p > 3):
-        print('NewsAPIException - dev account cannot access results 90 to 120')
-        # hard-coded error handling for this case
-        return redirect('/deverror')
+
     return redirect('/allentertainment')
 
 def pull_data(fromdate, todate, topicsearch, lang, sort_way):
