@@ -68,6 +68,7 @@ def entertainment_all():
         req = [request.form['fromdate'], request.form['todate'], request.form['topicsearch'], request.form['lang'], request.form['sort']]
         data = pull_data(req[0], req[1], req[2], req[3], req[4])
         return render_template('entertainment_all.html', results=data[0], all_articles=data[1], page=data[2])
+        print(req)
     elif paging:
         data = pull_data(req[0], req[1], req[2], req[3], req[4])
         return render_template('entertainment_all.html', results=data[0], all_articles=data[1], page=data[2])
