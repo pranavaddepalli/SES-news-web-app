@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from newsapi import NewsApiClient
 import os
 import dateutil.parser
@@ -26,10 +26,11 @@ def entertainment():
 def nextpage():
     global p
     global paging
-    print(p)
-    p += 1
-    paging = True
-    return entertainment_all()
+    if(req != []):
+        print(p)
+        p += 1
+        paging = True
+    return redirect('/allentertainment')
 
 def pull_data(fromdate, todate, topicsearch, lang, sort_way):
     global p
