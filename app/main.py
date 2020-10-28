@@ -25,6 +25,18 @@ def entertainment():
         category='entertainment', page_size=30, country='us', language='en')
     return render_template('entertainment.html', top_headlines=top_headlines['articles'])
 
+@app.route('/tech')
+def tech():
+    top_headlines = newsapi.get_top_headlines(
+        category='technology', page_size=30, country='us', language='en')
+    return render_template('tech.html', top_headlines=top_headlines['articles'])
+
+@app.route('/sports')
+def sports():
+    top_headlines = newsapi.get_top_headlines(
+        category='sports', page_size=30, country='us', language='en')
+    return render_template('sports.html', top_headlines=top_headlines['articles'])
+
 @app.route('/nextpage', methods=['GET'])
 def nextpage():
     global p
