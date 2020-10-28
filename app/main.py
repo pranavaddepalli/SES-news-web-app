@@ -30,6 +30,7 @@ def nextpage():
     global p
     global paging
     if(req != []):
+        print(req)
         p += 1
         paging = True
 
