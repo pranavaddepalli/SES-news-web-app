@@ -29,6 +29,7 @@ def entertainment():
 def nextpage():
     global p
     global paging
+    print(req)
     if(req != []):
         print(req)
         p += 1
