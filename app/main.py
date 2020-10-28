@@ -29,12 +29,21 @@ def entertainment():
 def nextpage():
     global p
     global paging
-    print(req)
     if(req != []):
         print(req)
         p += 1
         paging = True
 
+    return redirect('/all')
+
+@app.route('/prevpage', methods=['GET'])
+def prevpage():
+    global p
+    global paging
+    if(req != [] and p > 1):
+        print(req)
+        p -= 1
+        paging = True
     return redirect('/all')
 
 def pull_data(fromdate, todate, topicsearch, lang, sort_way):
