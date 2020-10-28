@@ -15,9 +15,9 @@ paging = False
 def home():
     return render_template('index.html')
 
-@app.route('/error')
-def error404():
-    return render_template('404error.html')
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404error.html'), 404
 
 @app.route('/deverror')
 def deverror():
