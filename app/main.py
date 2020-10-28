@@ -65,6 +65,7 @@ def entertainment_all():
     global paging
     print(paging)
     if request.method == 'POST':
+        p = 1
         req = [request.form['fromdate'], request.form['todate'], request.form['topicsearch'], request.form['lang'], request.form['sort']]
         print(req)
         data = pull_data(req[0], req[1], req[2], req[3], req[4])
