@@ -29,13 +29,22 @@ def entertainment():
 def nextpage():
     global p
     global paging
-    print(req)
     if(req != []):
         print(req)
         p += 1
         paging = True
 
-    return redirect('/allentertainment')
+    return redirect('/all')
+
+@app.route('/prevpage', methods=['GET'])
+def prevpage():
+    global p
+    global paging
+    if(req != [] and p > 1):
+        print(req)
+        p -= 1
+        paging = True
+    return redirect('/all')
 
 def pull_data(fromdate, todate, topicsearch, lang, sort_way):
     global p
@@ -57,7 +66,7 @@ def pull_data(fromdate, todate, topicsearch, lang, sort_way):
     page = int(p)
     return [results, articles, page]
 
-@app.route('/allentertainment', methods=['GET', 'POST'])
+@app.route('/all', methods=['GET', 'POST'])
 def entertainment_all():
     print('e all')
     global p
@@ -69,21 +78,29 @@ def entertainment_all():
         req = [request.form['fromdate'], request.form['todate'], request.form['topicsearch'], request.form['lang'], request.form['sort']]
         print(req)
         data = pull_data(req[0], req[1], req[2], req[3], req[4])
-        return render_template('entertainment_all.html', results=data[0], all_articles=data[1], page=data[2])
+        return render_template('all_articles.html', results=data[0], all_articles=data[1], page=data[2])
     elif paging:
         data = pull_data(req[0], req[1], req[2], req[3], req[4])
-        return render_template('entertainment_all.html', results=data[0], all_articles=data[1], page=data[2])
+        return render_template('all_articles.html', results=data[0], all_articles=data[1], page=data[2])
     else:
         p = 1
         paging = False
-        return render_template('entertainment_all.html', results=0, all_articles=[], page=p)
+        return render_template('all_articles.html', results=0, all_articles=[], page=p)
 
 
 
 
 @app.context_processor
-def utility_processor():
+def date_processor():
     def format_date(datestamp):
         date = dateutil.parser.parse(datestamp)
         return "{} {}, {} at {}:{}".format(date.strftime("%B"), date.strftime("%d"), date.strftime("%Y"), date.strftime("%H"), date.strftime("%M"))
     return dict(format_date=format_date)
+
+@app.context_processor
+def content_processor():
+    def format_content(content):
+        if content == None:
+            return "We couldn't get this article's content. Sorry!"
+        return str(content)[0:200]
+    return dict(format_content=format_content)
