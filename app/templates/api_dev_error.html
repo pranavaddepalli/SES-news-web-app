@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="News API Web Application">
+  <meta name="author" content="Pranav Addepalli">
+
+  <title>Error 404 - Results Unavailable</title>
+
+  <link href='https://fonts.googleapis.com/css?family=Anton|Passion+One|PT+Sans+Caption' rel='stylesheet' type='text/css'>
+  <link href="{{url_for('static', filename='css/styles/404errorstyle.css')}}" rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+        <!-- Error Page -->
+        <center>
+            <div class="error">
+                <div class="container-floud">
+                    <div class="col-xs-12 ground-color text-center">
+                        <div class="container-error-404">
+                            <div class="clip"><div class="shadow"><span class="digit thirdDigit"></span></div></div>
+                            <div class="clip"><div class="shadow"><span class="digit secondDigit"></span></div></div>
+                            <div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
+                        </div>
+                        <h2 class="h1">Sorry! We can't load these results.</h2>
+                        <h4>The developer account for our News API only supports retrieval of the first 90 results in your query.</h4>
+                    </div>
+                </div>
+            </div>
+          </center>
+        <!-- Error Page -->
+        <script>
+           function randomNum()
+        {
+            "use strict";
+            return Math.floor(Math.random() * 9)+1;
+        }
+            var loop1,loop2,loop3,time=30, i=0, number, selector3 = document.querySelector('.thirdDigit'), selector2 = document.querySelector('.secondDigit'),
+                selector1 = document.querySelector('.firstDigit');
+            loop3 = setInterval(function()
+            {
+              "use strict";
+                if(i > 40)
+                {
+                    clearInterval(loop3);
+                    selector3.textContent = 4;
+                }else
+                {
+                    selector3.textContent = randomNum();
+                    i++;
+                }
+            }, time);
+            loop2 = setInterval(function()
+            {
+              "use strict";
+                if(i > 80)
+                {
+                    clearInterval(loop2);
+                    selector2.textContent = 0;
+                }else
+                {
+                    selector2.textContent = randomNum();
+                    i++;
+                }
+            }, time);
+            loop1 = setInterval(function()
+            {
+              "use strict";
+                if(i > 100)
+                {
+                    clearInterval(loop1);
+                    selector1.textContent = 4;
+                }else
+                {
+                    selector1.textContent = randomNum();
+                    i++;
+                }
+            }, time);
+        </script>
+</body>
+</html>
