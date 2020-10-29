@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+import requests
 from newsapi import NewsApiClient
 import os
 import dateutil.parser
@@ -58,7 +59,7 @@ def prevpage():
         paging = True
     return redirect('/all')
 
-def pull_data(fromdate, todate, topicsearch, lang, sort_way):
+def pull_data(fromdate, todate, topicsearch, lang, sort_way, pcheck):
     global p
     results = 0
     articles = []
@@ -76,6 +77,11 @@ def pull_data(fromdate, todate, topicsearch, lang, sort_way):
     results = all_articles['totalResults']
     articles = all_articles['articles']
     page = int(p)
+    if(pcheck == "yes"):
+        for article in articles:
+            if "paywall" in requests.get(article['url']).text:
+                print("paywall found for ", article['title'])
+                article['paywall'] = 'yes'
     return [results, articles, page]
 
 @app.route('/all', methods=['GET', 'POST'])
@@ -87,9 +93,9 @@ def entertainment_all():
     print(paging)
     if request.method == 'POST':
         p = 1
-        req = [request.form['fromdate'], request.form['todate'], request.form['topicsearch'], request.form['lang'], request.form['sort']]
+        req = [request.form['fromdate'], request.form['todate'], request.form['topicsearch'], request.form['lang'], request.form['sort'], request.form['paywallcheck']]
         print(req)
-        data = pull_data(req[0], req[1], req[2], req[3], req[4])
+        data = pull_data(req[0], req[1], req[2], req[3], req[4], req[5])
         return render_template('all_articles.html', results=data[0], all_articles=data[1], page=data[2])
     elif paging:
         data = pull_data(req[0], req[1], req[2], req[3], req[4])

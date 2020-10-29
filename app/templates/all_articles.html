@@ -66,6 +66,15 @@
               <option value="publishedAt">recency</option>
             </select>
           </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" name="paywallcheck" type="checkbox" value="yes" id="paywallcheck">
+              <input class="form-check-input" name="paywallcheck" type="hidden" value="no" id="paywallcheck">
+              <label class="form-check-label" for="paywallcheck">
+                Check for paywalls? (will take longer)
+              </label>
+            </div>
+          </div>
           <center><input type="submit" class="btn btn-primary" value="Search"/></center>
         </form>
       </div>
@@ -98,6 +107,9 @@
                   <h5 class="card-text">{{ format_date(article['publishedAt']) }}</h5>
                   <p class="card-title">{{article['title']}}</p>
                   <i><p class="card-text">{{ format_content(article['content'])}}</p></i>
+                  {% if article['paywall'] == "yes" %}
+                  <p class="card-text" style="color: red">Wait! This article may have a paywall.</p>
+                  {% endif %}
                 </div>
               </div>
             </a>
